@@ -18,7 +18,8 @@ resource_pools:
 
 disk_pools:
 - name: disks
-  disk_size: 65_536
+  disk_size: 20480
+  cloud_properties: {datacenter: 908DC2072407C94C8054610AD5A53B8C}
 
 networks:
 - name: default
@@ -85,7 +86,7 @@ instance_groups:
       db: *db
       flush_arp: true
       enable_post_deploy: true
-      generate_vm_passwords: true
+      generate_vm_passwords: false
       enable_dedicated_status_worker: true
       enable_nats_delivered_templates: true
       workers: 4

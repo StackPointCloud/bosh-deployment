@@ -1,0 +1,132 @@
+---
+- type: replace
+  path: /releases/-
+  value:
+    name: bosh-oneandone-cpi
+    version: latest
+    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/dev-release.tgz
+    sha1: 08d8cf8945d5318d0995ad55bde040e4f71b8dc7
+
+- type: replace
+  path: /resource_pools/name=vms/stemcell?
+  value:
+    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/test-stemcell.tgz
+    sha1: caa8a369dcd623c7d4731687cdd566437dbcc226
+
+# Configure 1&1 server
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties?
+  value:
+    name: machine name
+    flavor: L
+    director: true
+    rsa_key: ((ssh_key))
+
+- type: replace
+  path: /networks/name=default/subnets/0/cloud_properties?
+  value:
+    private-network-id: ((private-network-id))
+    open-ports:
+    - port-from: 22
+      port-to: 22
+      source: 0.0.0.0
+    - port-from: 80
+      port-to: 80
+      source: 0.0.0.0
+    - port-from: 443
+      port-to: 443
+      source: 0.0.0.0
+    - port-from: 8443
+      port-to: 8443
+      source: 0.0.0.0
+    - port-from: 25777
+      port-to: 25777
+      source: 0.0.0.0
+    - port-from: 25555
+      port-to: 25555
+      source: 0.0.0.0
+    - port-from: 8447
+      port-to: 8447
+      source: 0.0.0.0
+    - port-from: 6868
+      port-to: 6868
+      source: 0.0.0.0
+
+- type: replace
+  path: /resource_pools/name=vms/env/bosh/keep_root_password?
+  value: true
+
+# Enable registry job
+- type: replace
+  path: /instance_groups/name=bosh/jobs/-
+  value:
+    name: registry
+    release: bosh
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/registry?
+  value:
+    address:  ((internal_ip))
+    host:  ((internal_ip))
+    db: # todo remove
+      host: 127.0.0.1
+      user: postgres
+      password: ((postgres_password))
+      database: bosh
+      adapter: postgres
+    
+    http:
+      user: registry
+      password: ((registry_password))
+      port: 25777
+    username: registry
+    password: ((registry_password))
+    port: 25777
+    endpoint: http://registry:((registry_password))@((internal_ip)):25777
+
+# Add CPI job
+- type: replace
+  path: /instance_groups/name=bosh/jobs/-
+  value: &cpi_job
+    name: oneandone_cpi
+    release: bosh-oneandone-cpi
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/director/cpi_job?
+  value: oneandone_cpi
+
+- type: replace
+  path: /cloud_provider/template?
+  value: *cpi_job
+
+- type: replace
+  path: /cloud_provider/ssh_tunnel?
+  value:
+    host: ((internal_ip))
+    port: 22
+    user: vcap
+    private_key: ((private_key))
+    
+
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/oao?
+  value: &cpi_conf   
+    token: ((api_token))
+    
+- type: replace
+  path: /cloud_provider/properties/oao?
+  value: *cpi_conf
+
+# Additional variables needed by the CPI
+- type: replace
+  path: /variables/-
+  value:
+    name: registry_password
+    type: password
+                             
+- type: replace
+  path: /variables/-
+  value:
+    name: cpikeys 
+    type: ssh

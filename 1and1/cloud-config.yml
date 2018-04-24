@@ -1,0 +1,44 @@
+vm_types:
+- name: basic
+  cloud_properties:
+    name: machine name
+    flavor: L
+    rsa_key: ((ssh_key))
+
+networks:
+- name: default
+  type: dynamic
+  cloud_properties:
+    subnet: subnet-9be6c6gh
+    open-ports:
+    - port-from: 22
+      port-to: 22
+      source: 0.0.0.0
+    - port-from: 80
+      port-to: 80
+      source: 0.0.0.0
+    - port-from: 443
+      port-to: 443
+      source: 0.0.0.0
+    - port-from: 8443
+      port-to: 8443
+      source: 0.0.0.0
+    - port-from: 25777
+      port-to: 25777
+      source: 0.0.0.0
+    - port-from: 25555
+      port-to: 25555
+      source: 0.0.0.0
+    - port-from: 8447
+      port-to: 8447
+      source: 0.0.0.0
+    - port-from: 6868
+      port-to: 6868
+      source: 0.0.0.0
+
+compilation:
+  workers: 2
+  network: default
+  vm_type: basic
+  reuse_compilation_vms: true
+
