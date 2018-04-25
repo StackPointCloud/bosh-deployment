@@ -1,0 +1,30 @@
+---
+name: learn-bosh
+
+releases:
+- name: learn-bosh
+  version: latest
+
+stemcells:
+- name: bosh-oneandone-test-ubuntu-trusty-go_agent
+  alias: default
+  version: latest
+
+update:
+  canaries: 1
+  max_in_flight: 2
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+
+jobs:
+- name: app
+  templates:
+  - name: app
+  instances: 1
+  vm_type: basic
+  stemcell: default
+  networks:
+  - name: default
+    
+  properties: {}
+
