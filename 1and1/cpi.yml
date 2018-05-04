@@ -4,14 +4,14 @@
   value:
     name: bosh-oneandone-cpi
     version: latest
-    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/dev-release.tgz
-    sha1: 16c3fa70fa25d29a04755aa730dd774657929d97
+    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/dev-release3.tgz
+    sha1: 2eb498988c82d1bc6de333c23e3991bd3635b0cc
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/test-stemcell.tgz
-    sha1: caa8a369dcd623c7d4731687cdd566437dbcc226
+    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/bosh-stemcell-3541.21-oneandone-xen-ubuntu-trusty-go_agent-raw.tgz
+    sha1: bbc8f98b6b16368496457541c3ebbd4b99b1d6f6
 
 # Configure 1&1 server
 - type: replace
@@ -54,7 +54,7 @@
 
 - type: replace
   path: /resource_pools/name=vms/env/bosh/keep_root_password?
-  value: true
+  value: false
 
 # Enable registry job
 - type: replace
