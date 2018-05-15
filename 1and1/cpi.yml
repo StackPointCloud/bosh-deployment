@@ -10,7 +10,7 @@
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: file://opt/bosh-deployment/stemcell.tgz
+    url: file:///opt/bosh-deployment/stemcell.tgz
 
 # Configure 1&1 server
 - type: replace
