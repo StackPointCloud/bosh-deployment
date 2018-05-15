@@ -19,6 +19,7 @@
     name: machine name
     flavor: L
     director: true
+    datacenter: ((datacenter))
     rsa_key: ((ssh_key))
 
 - type: replace
