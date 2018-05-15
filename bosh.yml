@@ -19,7 +19,7 @@ resource_pools:
 disk_pools:
 - name: disks
   disk_size: 20480
-  cloud_properties: {datacenter: 908DC2072407C94C8054610AD5A53B8C}
+  cloud_properties: {datacenter: ((datacenter_id))}
 
 networks:
 - name: default

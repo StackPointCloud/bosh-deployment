@@ -5,7 +5,7 @@
     name: bosh-oneandone-cpi
     version: latest
     url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/release1.tgz
-    sha1: 28111dd771b5d38997a0667bffcdbdf4e51dff9f
+    sha1: e6faecf302b66d5ff7a1dc8c722fdfe50c51a9aa
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
@@ -24,7 +24,7 @@
 - type: replace
   path: /networks/name=default/subnets/0/cloud_properties?
   value:
-    private-network-id: ((private-network-id))
+    private-network-id: ((private_network_id))
     open-ports:
     - port-from: 22
       port-to: 22
