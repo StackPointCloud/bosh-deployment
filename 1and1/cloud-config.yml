@@ -10,7 +10,7 @@ networks:
   type: dynamic
   cloud_properties:
     private-network-id: ((private_network_id))
-    datacenter: ((datacenter_id))
+    datacenter: ((datacenter))
     subnet: subnet-9be6c6gh
     open-ports:
     - port-from: 22
