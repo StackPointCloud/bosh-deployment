@@ -4,14 +4,13 @@
   value:
     name: bosh-oneandone-cpi
     version: latest
-    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/dev-release3.tgz
-    sha1: 2eb498988c82d1bc6de333c23e3991bd3635b0cc
+    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/release1.tgz
+    sha1: 28111dd771b5d38997a0667bffcdbdf4e51dff9f
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/bosh-stemcell-3541.21-oneandone-xen-ubuntu-trusty-go_agent-raw.tgz
-    sha1: bbc8f98b6b16368496457541c3ebbd4b99b1d6f6
+    url: file://opt/bosh-deployment/stemcell.tgz
 
 # Configure 1&1 server
 - type: replace
