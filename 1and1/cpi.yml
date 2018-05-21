@@ -26,7 +26,7 @@
   path: /networks/name=default/subnets/0/cloud_properties?
   value:
     private-network-id: ((private_network_id))
-    policy-name: Default
+    firewall-policy-name: Default
 
 - type: replace
   path: /resource_pools/name=vms/env/bosh/keep_root_password?
