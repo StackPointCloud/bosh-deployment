@@ -16,8 +16,8 @@
 - type: replace
   path: /resource_pools/name=vms/cloud_properties?
   value:
-    name: machine name
-    flavor: L
+    name: MAIN-director
+    flavor: 3XL
     director: true
     datacenter: ((datacenter))
     rsa_key: ((ssh_key))
