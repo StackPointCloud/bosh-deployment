@@ -5,7 +5,7 @@
     name: bosh-oneandone-cpi
     version: latest
     url: https://github.com/StackPointCloud/bosh-oneandone-cpi-release/releases/download/v0.1/release2.tgz
-    sha1: de35db61930a6def867a335dee4373ab201bd70c
+    sha1: 98d9ecdc9d66fe16e3f7c5ab9acd27ce9f25635f
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
