@@ -3,19 +3,65 @@ vm_types:
   cloud_properties:
     name: machine name
     flavor: L
-    rsa_key: ((ssh_key))
-    datacenter: ((datacenter))
+    rsa_key: SSH KEY
+    datacenter: de 
+
+- name: minimal 
+  cloud_properties:
+    name: machine name
+    flavor: L 
+    rsa_key: SSH KEY
+    datacenter: de
+
+- name: small 
+  cloud_properties:
+    name: machine name
+    flavor: M 
+    rsa_key: SSH KEY
+    datacenter: de
+
+- name: small-extended 
+  cloud_properties:
+    name: machine name
+    flavor: L 
+    rsa_key: SSH KEY
+    datacenter: de
+    ephemeralDiskSize: 100
+- name: compilation-monster
+  cloud_properties:
+    name: machine name
+    flavor: XXL 
+    rsa_key: SSH KEY
+    datacenter: de
+
+disk_types:
+- name: 5GB
+  disk_size: 20480
+  cloud_properties: {datacenter: de}
+- name: 10GB
+  disk_size: 20480
+  cloud_properties: {datacenter: de}
+- name: 100GB
+  disk_size: 102400
+  cloud_properties: {datacenter: de}
+
 
 networks:
 - name: default
   type: dynamic
   cloud_properties:
-    private-network-id: ((private_network_id))
+    private-network-id: PRIVATE_NETWORK_ID
     firewall-policy-name: default
 
+vm_extensions:
+- name: cf-router-network-properties
+  cloud_properties:
+    lb-id: LB_ID
+
+
 compilation:
-  workers: 2
+  workers: 5 
   network: default
-  vm_type: basic
+  vm_type: compilation-monster 
   reuse_compilation_vms: true
 
